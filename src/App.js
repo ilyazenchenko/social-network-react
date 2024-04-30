@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import LoginForm from './components/LoginForm';
+import UserProfile from './components/UserProfile';
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null); // Сброс состояния пользователя, возвращаемся на страницу входа
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!user ? (
+        <LoginForm onLoginSuccess={handleLoginSuccess} />
+      ) : (
+        <UserProfile user={user} onLogout={handleLogout} />
+      )}
     </div>
   );
 }
