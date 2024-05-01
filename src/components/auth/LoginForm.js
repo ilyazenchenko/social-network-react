@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuthUserId } from '../AuthUserIdContext'; // Импортируем useAuthUserId
+import { useAuthUserId } from '../../AuthUserIdContext'; // Импортируем useAuthUserId
 
 function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
