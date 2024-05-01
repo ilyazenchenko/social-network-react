@@ -22,6 +22,7 @@ function UserProfile({ onLogout }) {
         console.log("auth user id", authUserId);
       } catch (error) {
         console.error('Ошибка при получении данных пользователя:', error);
+        navigate('/login')
       }
     };
 
