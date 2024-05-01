@@ -41,6 +41,7 @@ function UserProfile({ onLogout }) {
       {authUserId && authUserId.toString() !== id && ( // Показывать кнопку "Домой" только если это не страница текущего пользователя
         <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
       )}
+      <button onClick={() => navigate('/news')}>Новости</button> {/* Кнопка для перехода на страницу новостей */}
       <h1>{currentUser?.name} {currentUser?.surname}</h1>
       <h2>Posts</h2>
       {currentUser?.posts?.map(post => (
