@@ -51,6 +51,18 @@ function UserProfile({ onLogout }) {
     }
   };
 
+  const handleDeletePost = async (postId) => {
+    try {
+      await axios.delete(`http://localhost:8080/${id}/posts/${postId}`);
+      setCurrentUser(prev => ({
+        ...prev,
+        posts: prev.posts.filter(post => post.id !== postId)
+      })); // Обновляем состояние, удаляя пост без перезагрузки страницы
+    } catch (error) {
+      console.error('Ошибка при удалении поста:', error);
+    }
+  };
+
   return (
     <div>
       {authUserId && authUserId.toString() !== id && ( // Показывать кнопку "Домой" только если это не страница текущего пользователя
@@ -71,6 +83,7 @@ function UserProfile({ onLogout }) {
       {currentUser?.posts?.map(post => (
         <div key={post.id}>
           <p>{post.text} - {post.formattedDate}</p>
+          <button onClick={() => handleDeletePost(post.id)}>Удалить</button>
         </div>
       ))}
       <h2>Subscribers</h2>
