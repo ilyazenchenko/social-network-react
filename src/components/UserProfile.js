@@ -10,11 +10,26 @@ function UserProfile({ onLogout }) {
     const navigate = useNavigate();
     const { id } = useParams();
     const [postText, setPostText] = useState(''); // Состояние для хранения текста нового поста
+    const [subscribedIds, setSubscribedIds] = useState([]); // Состояние для хранения списка ID подписок
+    const isSubscribed = subscribedIds.includes(parseInt(id)); // Проверяем, подписан ли текущий пользователь на просматриваемого
+
 
     useEffect(() => {
       fetchUserProfile(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
+    useEffect(() => {
+        const fetchSubscriptions = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8080/sub_to_ids`);
+            setSubscribedIds(response.data);
+          } catch (error) {
+            console.error('Ошибка при получении списка подписок:', error);
+          }
+        };
+      
+        fetchSubscriptions();
+      }, []);
   
     const fetchUserProfile = async (userId) => {
       try {
@@ -64,6 +79,24 @@ function UserProfile({ onLogout }) {
     }
   };
 
+  const handleSubscribe = async () => {
+    try {
+      await axios.post(`http://localhost:8080/${authUserId}/subs/${id}`);
+      setSubscribedIds(prev => [...prev, parseInt(id)]); // Добавляем ID в список подписок
+    } catch (error) {
+      console.error('Ошибка при подписке:', error);
+    }
+  };
+  
+  const handleUnsubscribe = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/${authUserId}/subs/${id}`);
+      setSubscribedIds(prev => prev.filter(subId => subId !== parseInt(id))); // Удаляем ID из списка подписок
+    } catch (error) {
+      console.error('Ошибка при отписке:', error);
+    }
+  };
+
   return (
     <div>
       {authUserId && authUserId.toString() !== id && ( // Показывать кнопку "Домой" только если это не страница текущего пользователя
@@ -71,6 +104,15 @@ function UserProfile({ onLogout }) {
       )}
       <button onClick={() => navigate('/news')}>Новости</button> {/* Кнопка для перехода на страницу новостей */}
       <h1>{currentUser?.name} {currentUser?.surname}</h1>
+      {authUserId && authUserId.toString() !== id && (
+        <div>
+            {isSubscribed ? (
+            <button onClick={handleUnsubscribe}>Отписаться</button>
+            ) : (
+            <button onClick={handleSubscribe}>Подписаться</button>
+            )}
+        </div>
+      )}
       <h2>Posts</h2>
       <form onSubmit={handlePostSubmit}>
         <input
