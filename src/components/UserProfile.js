@@ -61,6 +61,7 @@ function UserProfile({ onLogout }) {
           {sub.name} {sub.surname}
         </p>
       ))}
+      <button onClick={() => navigate('/search')}>Поиск</button> {/* Кнопка для перехода на страницу поиска */}
       <button onClick={handleLogout}>Выйти</button>
     </div>
   );

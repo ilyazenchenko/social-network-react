@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile.js';
 import NewsPage from './components/NewsPage.js'; // Импортируйте NewsPage
 import axios from 'axios';
 import { AuthUserIdProvider } from './AuthUserIdContext';
+import SearchPage from './components/SearchPage.js';
 
 axios.defaults.withCredentials = true;
 
@@ -32,7 +33,8 @@ function App() {
           <Route path="/login" element={!user ? <LoginForm onLoginSuccess={setUser} /> : <Navigate replace to="/" />} />
           <Route path="/register" element={!user ? <RegisterForm onRegisterSuccess={setUser} /> : <Navigate replace to="/" />} />
           <Route path="/:id" element={<UserProfile onLogout={() => setUser(null)} />} />
-          <Route path="/news" element={!user ? <LoginForm onLoginSuccess={setUser} /> : <NewsPage />} />
+          <Route path="/news" element={!user ? <Navigate replace to="/" /> : <NewsPage />} />
+          <Route path="/search" element={!user ? <Navigate replace to="/" /> : <SearchPage />} />
           <Route path="/" element={user ? <Navigate replace to={`/${user.id}`} /> : <Navigate replace to="/login" />} />
         </Routes>
       </Router>
