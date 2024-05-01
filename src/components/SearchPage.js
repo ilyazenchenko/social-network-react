@@ -23,6 +23,7 @@ function SearchPage() {
         try {
             const response = await axios.get(`http://localhost:8080/search?query=${query}`);
             setSearchResults(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error('Ошибка при поиске:', error);
         }
@@ -39,6 +40,8 @@ function SearchPage() {
 
     return (
         <div>
+            <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
+            <button onClick={() => navigate('/news')}>Новости</button>
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
@@ -46,7 +49,7 @@ function SearchPage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Поиск пользователей..."
                 />
-                <button type="submit">Поиск</button>
+                <button type="submit">Найти</button>
             </form>
             <ul>
                 {searchResults.map(user => (
@@ -55,7 +58,6 @@ function SearchPage() {
                     </li>
                 ))}
             </ul>
-            <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
         </div>
     );
 }

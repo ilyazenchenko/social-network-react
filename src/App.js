@@ -19,6 +19,7 @@ function App() {
       try {
         const response = await axios.get('http://localhost:8080/auth/user', { withCredentials: true });
         setUser(response.data);
+        console.log("auth user", response.data)
       } catch {
         setUser(null);
       }

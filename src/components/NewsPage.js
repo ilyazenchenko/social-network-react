@@ -23,6 +23,7 @@ function NewsPage() {
     return (
         <div>
             <button onClick={() => navigate('/')}>Домой</button>
+            <button onClick={() => navigate('/search')}>Поиск</button>
             <h1>Новости</h1>
             {news.map(newsItem => (
                 <div key={newsItem.id}>

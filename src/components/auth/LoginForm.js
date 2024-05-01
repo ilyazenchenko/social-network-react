@@ -17,7 +17,7 @@ function LoginForm({ onLoginSuccess }) {
       console.log("login user", response.data);
       onLoginSuccess(response.data);
       setAuthUserId(response.data.id); // Устанавливаем authUserId в контексте
-      navigate(`/${response.data.id}`);
+      navigate(`/news`);
     } catch (error) {
       console.error(error);
     }
