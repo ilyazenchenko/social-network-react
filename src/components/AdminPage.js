@@ -16,7 +16,7 @@ function AdminPage() {
         console.error('Ошибка при получении данных:', error);
         navigate('/');
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
