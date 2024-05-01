@@ -7,6 +7,7 @@ import NewsPage from './components/NewsPage.js';
 import SearchPage from './components/SearchPage.js';
 import axios from 'axios';
 import { AuthUserIdProvider } from './AuthUserIdContext';
+import AdminPage from './components/AdminPage.js';
 
 axios.defaults.withCredentials = true;
 
@@ -19,6 +20,7 @@ function App() {
       try {
         const response = await axios.get('http://localhost:8080/auth/user', { withCredentials: true });
         setUser(response.data);
+        console.log(response.data)
       } catch {
         setUser(null);
       } finally {
@@ -42,6 +44,7 @@ function App() {
           <Route path="/news" element={user ? <NewsPage /> : <Navigate replace to="/login" />} />
           <Route path="/search" element={user ? <SearchPage /> : <Navigate replace to="/login" />} />
           <Route path="/" element={!user ? <Navigate replace to="/login" /> : <Navigate replace to={`/${user?.id}`} />} />
+          <Route path='/admin' element={user ? <AdminPage /> : <Navigate replace to="/login" />} />
         </Routes>
       </Router>
     </AuthUserIdProvider>
