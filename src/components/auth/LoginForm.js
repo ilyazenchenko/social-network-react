@@ -9,6 +9,7 @@ function LoginForm({ onLoginSuccess }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setAuthUserId } = useAuthUserId(); // Получаем setAuthUserId из контекста
+  const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +21,9 @@ function LoginForm({ onLoginSuccess }) {
       navigate(`/news`);
     } catch (error) {
       console.error(error);
+      setError('Неправильные имя пользователя или пароль.'); // Установите ваше сообщение об ошибке
     }
+    
   };
 
   return (
@@ -36,6 +39,7 @@ function LoginForm({ onLoginSuccess }) {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <br />
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <button type="submit">Login</button>
         <button type="button" onClick={() => navigate('/register')}>Register</button>
       </form>
