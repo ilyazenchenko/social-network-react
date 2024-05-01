@@ -13,6 +13,7 @@ function UserProfile({ onLogout }) {
 
     useEffect(() => {
       fetchUserProfile(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
   
     const fetchUserProfile = async (userId) => {
