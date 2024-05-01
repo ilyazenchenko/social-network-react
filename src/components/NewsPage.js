@@ -25,14 +25,18 @@ function NewsPage() {
             <button onClick={() => navigate('/')}>Домой</button>
             <button onClick={() => navigate('/search')}>Поиск</button>
             <h1>Новости</h1>
-            {news.map(newsItem => (
-                <div key={newsItem.id}>
-                    <p>{newsItem.formattedDate} - {newsItem.text}</p>
-                    <p key={newsItem.id} onClick={() => navigate(`/${newsItem.user.id}`)} style={{cursor: 'pointer'}}>
-                        {newsItem.user.name} {newsItem.user.surname}
-                    </p>
-                </div>
-            ))}
+            {news.length === 0 ? (
+                <p>Новостей нет :(</p>
+            ) : (
+                news.map(newsItem => (
+                    <div key={newsItem.id}>
+                        <p>{newsItem.formattedDate} - {newsItem.text}</p>
+                        <p onClick={() => navigate(`/${newsItem.user.id}`)} style={{cursor: 'pointer'}}>
+                            {newsItem.user.name} {newsItem.user.surname}
+                        </p>
+                    </div>
+                ))
+            )}
         </div>
     );
 }
