@@ -1,41 +1,44 @@
+// UserProfile.js
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useAuthUserId } from '../AuthUserIdContext.js';
 
-function UserProfile({ user, onLogout, initialUser }) {
-  const [currentUser, setCurrentUser] = useState(user);
-
-  useEffect(() => {
-    setCurrentUser(user);
-  }, [user]);
-
-  const fetchUserProfile = async (userId) => {
-    try {
-      const response = await axios.get(`http://localhost:8080/${userId}`);
-      console.log(response.data.user)
-      setCurrentUser(response.data.user);
-      console.log("current user:", Object.entries(currentUser));
-    } catch (error) {
-      console.error('Ошибка при получении данных пользователя:', error);
-      alert('Не удалось загрузить профиль пользователя!');
-    }
-  };
+function UserProfile({ onLogout }) {
+    const { authUserId } = useAuthUserId(); // Получаем authUserId из контекста
+    const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate();
+    const { id } = useParams();
+  
+    useEffect(() => {
+      fetchUserProfile(id);
+    }, [id]);
+  
+    const fetchUserProfile = async (userId) => {
+      try {
+        const response = await axios.get(`http://localhost:8080/${userId}`);
+        setCurrentUser(response.data.user);
+        console.log("current user id", response.data.user.id);
+        console.log("auth user id", authUserId);
+      } catch (error) {
+        console.error('Ошибка при получении данных пользователя:', error);
+      }
+    };
 
   const handleLogout = async () => {
     try {
       await axios.post('http://localhost:8080/auth/logout');
       onLogout();
+      navigate('/login');
     } catch (error) {
       console.error('Ошибка при выходе из системы', error);
-      alert('Ошибка при попытке выхода из системы!');
     }
   };
 
-  const isInitialUser = currentUser?.id === initialUser?.id;
-
   return (
     <div>
-      {!isInitialUser && (
-        <button onClick={() => setCurrentUser(initialUser)}>Домой</button>
+      {authUserId && authUserId.toString() !== id && ( // Показывать кнопку "Домой" только если это не страница текущего пользователя
+        <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
       )}
       <h1>{currentUser?.name} {currentUser?.surname}</h1>
       <h2>Posts</h2>
@@ -46,13 +49,13 @@ function UserProfile({ user, onLogout, initialUser }) {
       ))}
       <h2>Subscribers</h2>
       {currentUser?.subscribers?.map(sub => (
-        <p key={sub.id} onClick={() => fetchUserProfile(sub.id)} style={{cursor: 'pointer'}}>
+        <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} style={{cursor: 'pointer'}}>
           {sub.name} {sub.surname}
         </p>
       ))}
       <h2>Subscribed To</h2>
       {currentUser?.subscribedTo?.map(sub => (
-        <p key={sub.id} onClick={() => fetchUserProfile(sub.id)} style={{cursor: 'pointer'}}>
+        <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} style={{cursor: 'pointer'}}>
           {sub.name} {sub.surname}
         </p>
       ))}

@@ -1,18 +1,21 @@
+// RegisterForm.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function RegisterForm({ onRegisterSuccess, onSwitchToLogin}) {
+function RegisterForm({ onRegisterSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [city, setCity] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/auth/register', {
+      const response = await axios.post('http://localhost:8080/auth/register', {
         username,
         password,
         name,
@@ -20,7 +23,8 @@ function RegisterForm({ onRegisterSuccess, onSwitchToLogin}) {
         birthDate,
         city
       });
-      onRegisterSuccess();
+      onRegisterSuccess(response.data);
+      navigate(`/${response.data.id}`);  // Navigate to the new user's profile page
     } catch (error) {
       console.error('Ошибка регистрации:', error);
       alert('Ошибка при регистрации!');
@@ -31,17 +35,17 @@ function RegisterForm({ onRegisterSuccess, onSwitchToLogin}) {
     <form onSubmit={handleRegister}>
       <label>
         Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required={true}/>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
       </label>
       <br />
       <label>
         Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </label>
       <br />
       <label>
         Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required={true} />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
       </label>
       <br />
       <label>
@@ -60,7 +64,7 @@ function RegisterForm({ onRegisterSuccess, onSwitchToLogin}) {
       </label>
       <br />
       <button type="submit">Register</button>
-      <button type="button" onClick={onSwitchToLogin}>Back to Login</button>
+      <button type="button" onClick={() => navigate('/login')}>Back to Login</button>
     </form>
   );
 }
