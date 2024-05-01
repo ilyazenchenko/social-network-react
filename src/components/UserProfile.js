@@ -9,7 +9,8 @@ function UserProfile({ onLogout }) {
     const [currentUser, setCurrentUser] = useState(null);
     const navigate = useNavigate();
     const { id } = useParams();
-  
+    const [postText, setPostText] = useState(''); // Состояние для хранения текста нового поста
+
     useEffect(() => {
       fetchUserProfile(id);
     }, [id]);
@@ -36,6 +37,20 @@ function UserProfile({ onLogout }) {
     }
   };
 
+  const handlePostSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://localhost:8080/${id}/posts`, { text: postText });
+      setCurrentUser(prev => ({
+        ...prev,
+        posts: [response.data, ...prev.posts]
+      })); // Добавляем новый пост в состояние без перезагрузки страницы
+      setPostText(''); // Очистка поля ввода после отправки
+    } catch (error) {
+      console.error('Ошибка при добавлении поста:', error);
+    }
+  };
+
   return (
     <div>
       {authUserId && authUserId.toString() !== id && ( // Показывать кнопку "Домой" только если это не страница текущего пользователя
@@ -44,6 +59,15 @@ function UserProfile({ onLogout }) {
       <button onClick={() => navigate('/news')}>Новости</button> {/* Кнопка для перехода на страницу новостей */}
       <h1>{currentUser?.name} {currentUser?.surname}</h1>
       <h2>Posts</h2>
+      <form onSubmit={handlePostSubmit}>
+        <input
+            type="text"
+            value={postText}
+            onChange={(e) => setPostText(e.target.value)}
+            placeholder="Напишите что-нибудь..."
+        />
+        <button type="submit">Опубликовать</button>
+        </form>
       {currentUser?.posts?.map(post => (
         <div key={post.id}>
           <p>{post.text} - {post.formattedDate}</p>
