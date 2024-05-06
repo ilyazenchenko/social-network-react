@@ -7,19 +7,23 @@ const Subscribers = ({ subscribers, subscribedTo }) => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h2>Подписчики</h2>
-      {subscribers.map(sub => (
-        <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} className='name-hyperlink'>
-          {sub.name} {sub.surname}
-        </p>
-      ))}
-      <h2>Подписан на</h2>
-      {subscribedTo.map(sub => (
-        <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} className='name-hyperlink'>
-          {sub.name} {sub.surname}
-        </p>
-      ))}
+    <div className='subs-general-container'>
+      <div className='subs-list-container'>
+        <h2>Подписчики</h2>
+        {subscribers.map(sub => (
+          <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} className='name-hyperlink'>
+            {sub.name} {sub.surname}
+          </p>
+        ))}
+      </div>
+      <div>
+        <h2>Подписан на</h2>
+        {subscribedTo.map(sub => (
+          <p key={sub.id} onClick={() => navigate(`/${sub.id}`)} className='name-hyperlink'>
+            {sub.name} {sub.surname}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

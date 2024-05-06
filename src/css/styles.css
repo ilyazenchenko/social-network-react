@@ -101,7 +101,7 @@
     background-color: #0056b3;
   }
   
-  .news-header, .auth-header{
+  .news-header, .auth-header, .main-header {
     color: #333;
     text-align: center;
     margin-bottom: 20px;
@@ -200,20 +200,10 @@
   
   /* Стили для элементов списка подписчиков и подписок */
   
-  .subscribers {
-    margin-top: 20px;
-    padding: 10px;
-  }
-  
-  .subscribers h2 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .subscribers p {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #007BFF;
+  .subs-general-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
   }
   
   /* Стили для постов */

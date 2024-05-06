@@ -22,6 +22,7 @@ function UserProfile({ onLogout }) {
         setCurrentUser(userProfileResponse.data.user);
         const subscriptionsResponse = await axios.get(`http://localhost:8080/sub_to_ids`);
         setSubscribedIds(subscriptionsResponse.data);
+        window.scrollTo(0, 0)
       } catch (error) {
         console.error('Ошибка при загрузке данных:', error);
         navigate('/login');

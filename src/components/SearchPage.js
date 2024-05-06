@@ -43,6 +43,7 @@ function SearchPage() {
         <div class="search-container">
             <button onClick={() => navigate(`/${authUserId}`)} class="home-button">Домой</button>
             <button onClick={() => navigate('/news')} class="news-button">Новости</button>
+            <h1 className='main-header'>Поиск</h1>
             <form onSubmit={handleSearch} class="search-form">
                 <input
                     type="text"
