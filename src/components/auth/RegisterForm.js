@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/auth.css'
+import '../../css/styles.css'
 
 function RegisterForm({ onRegisterSuccess }) {
   const [username, setUsername] = useState('');

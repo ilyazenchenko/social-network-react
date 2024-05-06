@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthUserId } from '../../AuthUserIdContext'; // Импортируем useAuthUserId
 import '../../css/auth.css'
+import '../../css/styles.css'
 
 function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
