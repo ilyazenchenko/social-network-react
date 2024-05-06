@@ -16,7 +16,7 @@ function RegisterForm() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/auth/register', {
+      await axios.post('http://localhost:8080/auth/register', {
         username,
         password,
         name,
@@ -24,7 +24,7 @@ function RegisterForm() {
         birthDate,
         city
       });
-      navigate('/login');  // Navigate to the new user's profile page
+      navigate('/login');
     } catch (error) {
       console.error('Ошибка регистрации:', error);
       alert('Ошибка при регистрации!');
