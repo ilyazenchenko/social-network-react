@@ -39,7 +39,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={!user ? <LoginForm onLoginSuccess={setUser} /> : <Navigate replace to={`/${user?.id}`} />} />
-          <Route path="/register" element={!user ? <RegisterForm onRegisterSuccess={setUser} /> : <Navigate replace to={`/${user?.id}`} />} />
+          <Route path="/register" element={!user ? <RegisterForm /> : <Navigate replace to={`/${user?.id}`} />} />
           <Route path="/:id" element={user ? <UserProfile onLogout={() => setUser(null)} /> : <Navigate replace to="/login" />} />
           <Route path="/news" element={user ? <NewsPage /> : <Navigate replace to="/login" />} />
           <Route path="/search" element={user ? <SearchPage /> : <Navigate replace to="/login" />} />

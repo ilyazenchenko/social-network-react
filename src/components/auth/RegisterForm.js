@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/styles.css'
 
-function RegisterForm({ onRegisterSuccess }) {
+function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -24,8 +24,7 @@ function RegisterForm({ onRegisterSuccess }) {
         birthDate,
         city
       });
-      onRegisterSuccess(response.data);
-      navigate(`/${response.data.id}`);  // Navigate to the new user's profile page
+      navigate('/login');  // Navigate to the new user's profile page
     } catch (error) {
       console.error('Ошибка регистрации:', error);
       alert('Ошибка при регистрации!');
