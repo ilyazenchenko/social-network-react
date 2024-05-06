@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthUserId } from '../../AuthUserIdContext'; // Импортируем useAuthUserId
+import '../../css/auth.css'
 
 function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
@@ -27,22 +28,24 @@ function LoginForm({ onLoginSuccess }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </label>
-        <br />
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        <button type="submit">Login</button>
-        <button type="button" onClick={() => navigate('/register')}>Register</button>
-      </form>
+    <div class="auth-div-container">
+      <div class="auth-div">
+        <form class="auth-form" onSubmit={handleLogin}>
+          <div class="form-group">
+            <label>Логин:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          </div>
+          <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+          {error && <div class="error">{error}</div>}
+          <div class="form-actions">
+            <button type="submit" class="btn">Войти</button>
+            <button type="button" class="btn" onClick={() => navigate('/register')}>Регистрация</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

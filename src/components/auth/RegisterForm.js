@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../../css/auth.css'
 
 function RegisterForm({ onRegisterSuccess }) {
   const [username, setUsername] = useState('');
@@ -32,40 +33,41 @@ function RegisterForm({ onRegisterSuccess }) {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </label>
-      <br />
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-      </label>
-      <br />
-      <label>
-        Surname:
-        <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Birth Date:
-        <input type="text" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        City:
-        <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-      </label>
-      <br />
-      <button type="submit">Register</button>
-      <button type="button" onClick={() => navigate('/login')}>Back to Login</button>
-    </form>
+    <div class="auth-div-container">
+      <div class="auth-div">
+        <form class="auth-form" onSubmit={handleRegister}>
+          <div class="form-group">
+            <label>Логин:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          </div>
+          <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+          <div class="form-group">
+            <label>Имя:</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          </div>
+          <div class="form-group">
+            <label>Фамилия:</label>
+            <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
+          </div>
+          <div class="form-group">
+            <label>Дата рождения:</label>
+            <input type="text" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
+          </div>
+          <div class="form-group">
+            <label>Город:</label>
+            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn">Зарегистрироваться</button>
+            <button type="button" class="btn" onClick={() => navigate('/login')}>Назад</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   );
 }
 
