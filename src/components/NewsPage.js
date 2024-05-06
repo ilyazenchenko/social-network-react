@@ -14,7 +14,7 @@ function NewsPage() {
 
     const fetchNews = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/news');
+            const response = await axios.get('http://social-security:8080/news');
             setNews(response.data);
         } catch (error) {
             console.error('Ошибка при получении новостей:', error);

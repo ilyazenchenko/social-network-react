@@ -18,9 +18,9 @@ function UserProfile({ onLogout }) {
   useEffect(() => {
     const fetchUserProfileAndSubscriptions = async () => {
       try {
-        const userProfileResponse = await axios.get(`http://localhost:8080/${id}`);
+        const userProfileResponse = await axios.get(`http://social-security:8080/${id}`);
         setCurrentUser(userProfileResponse.data.user);
-        const subscriptionsResponse = await axios.get(`http://localhost:8080/sub_to_ids`);
+        const subscriptionsResponse = await axios.get(`http://social-security:8080/sub_to_ids`);
         setSubscribedIds(subscriptionsResponse.data);
         window.scrollTo(0, 0)
       } catch (error) {
@@ -36,7 +36,7 @@ function UserProfile({ onLogout }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8080/auth/logout');
+      await axios.post('http://social-security:8080/auth/logout');
       onLogout();
       navigate('/login');
     } catch (error) {
