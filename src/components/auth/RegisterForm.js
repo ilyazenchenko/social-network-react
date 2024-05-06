@@ -35,6 +35,7 @@ function RegisterForm({ onRegisterSuccess }) {
   return (
     <div class="auth-div-container">
       <div class="auth-div">
+        <h1 className='auth-header'>Регистрация</h1>
         <form class="auth-form" onSubmit={handleRegister}>
           <div class="form-group">
             <label>Логин:</label>

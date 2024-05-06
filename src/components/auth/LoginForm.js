@@ -30,6 +30,7 @@ function LoginForm({ onLoginSuccess }) {
   return (
     <div class="auth-div-container">
       <div class="auth-div">
+        <h1 className='auth-header'>Вход</h1>
         <form class="auth-form" onSubmit={handleLogin}>
           <div class="form-group">
             <label>Логин:</label>
