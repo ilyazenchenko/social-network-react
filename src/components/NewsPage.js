@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../css/styles.css';
+import '../css/news.css';
 
 function NewsPage() {
     const [news, setNews] = useState([]);
@@ -21,23 +23,27 @@ function NewsPage() {
     };
 
     return (
-        <div>
-            <button onClick={() => navigate('/')}>Домой</button>
-            <button onClick={() => navigate('/search')}>Поиск</button>
-            <h1>Новости</h1>
+        <div class="news-container">
+            <div class="button-container">
+                <button onClick={() => navigate('/')} class="home-button">Домой</button>
+                <button onClick={() => navigate('/search')} class="search-button">Поиск</button>
+            </div>
+            <h1 class="news-header">Новости</h1>
             {news.length === 0 ? (
-                <p>Новостей нет :(</p>
+                <p class="no-news">Новостей нет :(</p>
             ) : (
                 news.map(newsItem => (
-                    <div key={newsItem.id}>
-                        <p>{newsItem.formattedDate} - {newsItem.text}</p>
-                        <p onClick={() => navigate(`/${newsItem.user.id}`)} style={{cursor: 'pointer'}}>
+                    <div key={newsItem.id} class="news-item">
+                        <div onClick={() => navigate(`/${newsItem.user.id}`)} class="author-name" style={{cursor: 'pointer'}}>
                             {newsItem.user.name} {newsItem.user.surname}
-                        </p>
+                        </div>
+                        <div className='news-time'>{newsItem.formattedDate}</div>
+                        <p className='news-text'>{newsItem.text}</p>
                     </div>
                 ))
             )}
         </div>
+
     );
 }
 
