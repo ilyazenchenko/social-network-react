@@ -1,6 +1,7 @@
 // components/userProfile/SubscribeHandler.js
 import React from 'react';
 import axios from 'axios';
+import '../../css/styles.css';
 
 const SubscribeHandler = ({ authUserId, userId, isSubscribed, setSubscribedIds }) => {
   const handleSubscribe = async () => {
@@ -24,9 +25,9 @@ const SubscribeHandler = ({ authUserId, userId, isSubscribed, setSubscribedIds }
   return (
     <div>
       {isSubscribed ? (
-        <button onClick={handleUnsubscribe}>Отписаться</button>
+        <button className='sub-bt-general unsub-button' onClick={handleUnsubscribe}>Отписаться</button>
       ) : (
-        <button onClick={handleSubscribe}>Подписаться</button>
+        <button className='sub-bt-general sub-to-button' onClick={handleSubscribe}>Подписаться</button>
       )}
     </div>
   );

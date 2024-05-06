@@ -6,6 +6,7 @@ import { useAuthUserId } from '../AuthUserIdContext.js';
 import SubscribeHandler from './userProfile/SubscribeHandler';
 import Posts from './userProfile/Posts';
 import Subscribers from './userProfile/Subscribers';
+import '../css/styles.css';
 
 function UserProfile({ onLogout }) {
   const { authUserId } = useAuthUserId();
@@ -43,25 +44,27 @@ function UserProfile({ onLogout }) {
   };
 
   return (
-    <div>
+  <div class="profile-container">
       {authUserId && authUserId.toString() !== id && (
-        <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
+          <button onClick={() => navigate(`/${authUserId}`)} class="home-button">Домой</button>
       )}
-      <button onClick={() => navigate('/news')}>Новости</button>
-      <button onClick={() => navigate('/search')}>Поиск</button>
-      <h1>{currentUser?.name} {currentUser?.surname}</h1>
+      <button onClick={() => navigate('/news')} class="news-button">Новости</button>
+      <button onClick={() => navigate('/search')} class="search-button">Поиск</button>
+      <h1 class="profile-header">{currentUser?.name} {currentUser?.surname}</h1>
       {authUserId && authUserId.toString() !== id && (
-        <SubscribeHandler
-          authUserId={authUserId}
-          userId={id}
-          isSubscribed={isSubscribed}
-          setSubscribedIds={setSubscribedIds}
-        />
+          <SubscribeHandler
+            authUserId={authUserId}
+            userId={id}
+            isSubscribed={isSubscribed}
+            setSubscribedIds={setSubscribedIds}
+          />
       )}
       <Posts userId={id} authUserId={authUserId} posts={currentUser?.posts || []} setPosts={posts => setCurrentUser({...currentUser, posts})} />
       <Subscribers subscribers={currentUser?.subscribers || []} subscribedTo={currentUser?.subscribedTo || []} />
-      <button onClick={handleLogout}>Выйти</button>
-    </div>
+      {authUserId && authUserId.toString() === id && (
+          <button onClick={handleLogout} className="logout-button">Выйти</button>
+      )}  </div>
+
   );
 }
 

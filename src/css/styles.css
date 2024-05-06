@@ -9,3 +9,262 @@
     font-family: Arial, sans-serif; /* Добавляем шрифт для всей страницы */
   }
   
+  /* Формы логина и регистрации */
+
+  .auth-div-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4; /* Легкий фон для всего контейнера */
+  }
+  
+  .auth-div {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Тень для карточки */
+    width: 300px; /* Фиксированная ширина для карточек */
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Новости */
+
+  .news-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .button-container {
+    margin-bottom: 20px;
+  }
+  
+  .home-button, .search-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .home-button:hover, .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .news-header {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .news-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .news-item:last-child {
+    border-bottom: none;
+  }
+  
+  .no-news {
+    text-align: center;
+    color: #666;
+  }
+  
+  .name-hyperlink {
+    color: #0066ff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+
+  /* Профиль пользоватля */ 
+
+  .profile-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .profile-header {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logout-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    /* right: 10px; */
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  
+  .news-button, .search-button, .home-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .news-button:hover, .search-button:hover, .home-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Стили для формы публикации постов */
+  .posts-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .posts-input {
+    width: calc(100% - 150px);
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
+  .posts-publish-button {
+    padding: 10px 20px;
+    background-color: #01a63b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .posts-publish-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Стили для элементов списка подписчиков и подписок */
+  
+  .subscribers {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .subscribers h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .subscribers p {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  /* Стили для постов */
+.post-item {
+    display: flex;
+    align-items: center; /* Выравнивание содержимого по центру по вертикали */
+    justify-content: space-between; /* Распределение пространства между элементами */
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Разделительная линия между постами */
+  }
+  
+  .post-item:last-child {
+    border-bottom: none; /* Убираем линию у последнего элемента */
+  }
+  
+  .delete-post {
+    padding: 5px 10px;
+    color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: none;
+  }
+  
+  .delete-post:hover {
+    text-decoration: underline; /* Темно-красный цвет при наведении */
+  }
+  
+  .post-content {
+    flex-grow: 1; /* Позволяет тексту занимать все доступное пространство */
+  }
+  
+  .news-time, .post-time {
+    color: #888;
+    font-size: 0.8em; /* Меньший размер для даты */
+    margin-right: 10px; /* Отступ справа от даты */
+  }
+  
+  /* Кнопки одписаться и отписаться */
+
+  .sub-bt-general {
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .sub-to-button {
+    background-color: #01a63b;
+  }
+  .unsub-button {
+    background-color: #dc3545;
+  }
