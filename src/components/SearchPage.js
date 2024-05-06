@@ -40,26 +40,28 @@ function SearchPage() {
     }
 
     return (
-        <div>
-            <button onClick={() => navigate(`/${authUserId}`)}>Домой</button>
-            <button onClick={() => navigate('/news')}>Новости</button>
-            <form onSubmit={handleSearch}>
+        <div class="search-container">
+            <button onClick={() => navigate(`/${authUserId}`)} class="home-button">Домой</button>
+            <button onClick={() => navigate('/news')} class="news-button">Новости</button>
+            <form onSubmit={handleSearch} class="search-form">
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Поиск пользователей..."
+                    class="search-input"
                 />
-                <button type="submit">Найти</button>
+                <button type="submit" class="search-submit">Найти</button>
             </form>
-            <ul>
+            <ul class="search-results">
                 {searchResults.map(user => (
-                    <li key={user.id} onClick={() => navigate(`/${user.id}`)} style={{ cursor: 'pointer' }}>
+                    <li key={user.id} onClick={() => navigate(`/${user.id}`)} class="search-result-item">
                         {user.name} {user.surname}
                     </li>
                 ))}
             </ul>
         </div>
+
     );
 }
 

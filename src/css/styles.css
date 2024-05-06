@@ -268,3 +268,60 @@
   .unsub-button {
     background-color: #dc3545;
   }
+
+  /* Поиск */
+
+  .search-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .search-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 15px;
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-submit {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-results {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .search-result-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-result-item:hover {
+    background-color: #f0f0f0;
+  }
+  
