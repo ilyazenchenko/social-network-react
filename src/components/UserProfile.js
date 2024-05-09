@@ -1,7 +1,7 @@
 // components/UserProfile.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../Axios.js';
 import { useAuthUserId } from '../AuthUserIdContext.js';
 import SubscribeHandler from './userProfile/SubscribeHandler';
 import Posts from './userProfile/Posts';
@@ -18,9 +18,9 @@ function UserProfile({ onLogout }) {
   useEffect(() => {
     const fetchUserProfileAndSubscriptions = async () => {
       try {
-        const userProfileResponse = await axios.get(`http://localhost:8080/${id}`);
+        const userProfileResponse = await axios.get(`http://213.139.210.103:8082/${id}`);
         setCurrentUser(userProfileResponse.data.user);
-        const subscriptionsResponse = await axios.get(`http://localhost:8080/sub_to_ids`);
+        const subscriptionsResponse = await axios.get(`http://213.139.210.103:8082/sub_to_ids`);
         setSubscribedIds(subscriptionsResponse.data);
         window.scrollTo(0, 0)
       } catch (error) {
@@ -36,7 +36,7 @@ function UserProfile({ onLogout }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8080/auth/logout');
+      await axios.post('http://213.139.210.103:8082/auth/logout');
       onLogout();
       navigate('/login');
     } catch (error) {

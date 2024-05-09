@@ -1,7 +1,7 @@
 // LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../Axios.js';
 import { useAuthUserId } from '../../AuthUserIdContext'; // Импортируем useAuthUserId
 import '../../css/styles.css'
 
@@ -15,7 +15,7 @@ function LoginForm({ onLoginSuccess }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/auth/process_login', { login: username, password: password });
+      const response = await axios.post('http://213.139.210.103:8082/auth/process_login', { login: username, password: password });
       console.log("login user", response.data);
       onLoginSuccess(response.data);
       setAuthUserId(response.data.id); // Устанавливаем authUserId в контексте
@@ -29,21 +29,21 @@ function LoginForm({ onLoginSuccess }) {
 
   return (
     <div class="auth-div-container">
-      <div class="auth-div">
+      <div className="auth-div">
         <h1 className='auth-header'>Вход</h1>
-        <form class="auth-form" onSubmit={handleLogin}>
-          <div class="form-group">
+        <form className="auth-form" onSubmit={handleLogin}>
+          <div className="form-group">
             <label>Логин:</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label>Пароль:</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          {error && <div class="error">{error}</div>}
-          <div class="form-actions">
-            <button type="submit" class="btn">Войти</button>
-            <button type="button" class="btn" onClick={() => navigate('/register')}>Регистрация</button>
+          {error && <div className="error">{error}</div>}
+          <div className="form-actions">
+            <button type="submit" className="btn">Войти</button>
+            <button type="button" className="btn" onClick={() => navigate('/register')}>Регистрация</button>
           </div>
         </form>
       </div>

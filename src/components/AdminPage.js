@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../Axios.js';
 import { useNavigate } from 'react-router-dom';
 import '../css/styles.css';
 
@@ -8,7 +8,7 @@ function AdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/admin')  // Подставьте ваш настоящий URL
+    axios.get('http://213.139.210.103:8082/admin')  // Подставьте ваш настоящий URL
       .then(response => {
         setData(response.data);
       })

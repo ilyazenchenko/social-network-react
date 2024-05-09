@@ -1,6 +1,6 @@
 // components/userProfile/Posts.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../Axios.js';
 import '../../css/styles.css';
 
 const Posts = ({ userId, posts, setPosts, authUserId }) => {
@@ -9,7 +9,7 @@ const Posts = ({ userId, posts, setPosts, authUserId }) => {
   const handlePostSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8080/${userId}/posts`, { text: postText });
+      const response = await axios.post(`http://213.139.210.103:8082/${userId}/posts`, { text: postText });
       setPosts([response.data, ...posts]);
       setPostText('');
     } catch (error) {
@@ -19,7 +19,7 @@ const Posts = ({ userId, posts, setPosts, authUserId }) => {
 
   const handleDeletePost = async (postId) => {
     try {
-      await axios.delete(`http://localhost:8080/${userId}/posts/${postId}`);
+      await axios.delete(`http://213.139.210.103:8082/${userId}/posts/${postId}`);
       setPosts(posts.filter(post => post.id !== postId));
     } catch (error) {
       console.error('Ошибка при удалении поста:', error);

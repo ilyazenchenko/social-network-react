@@ -1,7 +1,7 @@
 // NewsPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../Axios.js';
 import '../css/styles.css';
 
 function NewsPage() {
@@ -14,7 +14,7 @@ function NewsPage() {
 
     const fetchNews = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/news');
+            const response = await axios.get('http://213.139.210.103:8082/news');
             setNews(response.data);
         } catch (error) {
             console.error('Ошибка при получении новостей:', error);

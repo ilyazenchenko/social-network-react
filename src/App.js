@@ -5,11 +5,12 @@ import RegisterForm from './components/auth/RegisterForm.js';
 import UserProfile from './components/UserProfile.js';
 import NewsPage from './components/NewsPage.js';
 import SearchPage from './components/SearchPage.js';
-import axios from 'axios';
+import axios from './Axios.js';
 import { AuthUserIdProvider } from './AuthUserIdContext';
 import AdminPage from './components/AdminPage.js';
 
 axios.defaults.withCredentials = true;
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,7 +19,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/user', { withCredentials: true });
+        const response = await axios.get('http://213.139.210.103:8082/auth/user', { withCredentials: true });
         setUser(response.data);
         console.log(response.data)
       } catch {

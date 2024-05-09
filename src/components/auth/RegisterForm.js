@@ -1,7 +1,7 @@
 // RegisterForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../Axios.js';
 import '../../css/styles.css'
 
 function RegisterForm() {
@@ -16,7 +16,7 @@ function RegisterForm() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/auth/register', {
+      await axios.post('http://213.139.210.103:8082/auth/register', {
         username,
         password,
         name,

@@ -1,7 +1,7 @@
 // SearchPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../Axios.js';
 import { useAuthUserId } from '../AuthUserIdContext.js'; // Используем контекст для проверки авторизации
 import '../css/styles.css';
 
@@ -22,7 +22,7 @@ function SearchPage() {
 
     const fetchSearchResults = async (query) => {
         try {
-            const response = await axios.get(`http://localhost:8080/search?query=${query}`);
+            const response = await axios.get(`http://213.139.210.103:8082/search?query=${query}`);
             setSearchResults(response.data);
             console.log(response.data)
         } catch (error) {
