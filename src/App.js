@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://social-security:8080/auth/user', { withCredentials: true });
+        const response = await axios.get('http://localhost:8080/auth/user', { withCredentials: true });
         setUser(response.data);
         console.log(response.data)
       } catch {

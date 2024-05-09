@@ -6,7 +6,7 @@ import '../../css/styles.css';
 const SubscribeHandler = ({ authUserId, userId, isSubscribed, setSubscribedIds }) => {
   const handleSubscribe = async () => {
     try {
-      await axios.post(`http://social-security:8080/${authUserId}/subs/${userId}`);
+      await axios.post(`http://localhost:8080/${authUserId}/subs/${userId}`);
       setSubscribedIds(prev => [...prev, parseInt(userId)]);
     } catch (error) {
       console.error('Ошибка при подписке:', error);
@@ -15,7 +15,7 @@ const SubscribeHandler = ({ authUserId, userId, isSubscribed, setSubscribedIds }
 
   const handleUnsubscribe = async () => {
     try {
-      await axios.delete(`http://social-security:8080/${authUserId}/subs/${userId}`);
+      await axios.delete(`http://localhost:8080/${authUserId}/subs/${userId}`);
       setSubscribedIds(prev => prev.filter(subId => subId !== parseInt(userId)));
     } catch (error) {
       console.error('Ошибка при отписке:', error);

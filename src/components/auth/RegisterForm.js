@@ -16,7 +16,7 @@ function RegisterForm() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://social-security:8080/auth/register', {
+      await axios.post('http://localhost:8080/auth/register', {
         username,
         password,
         name,

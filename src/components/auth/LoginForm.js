@@ -15,7 +15,7 @@ function LoginForm({ onLoginSuccess }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://social-security:8080/auth/process_login', { login: username, password: password });
+      const response = await axios.post('http://localhost:8080/auth/process_login', { login: username, password: password });
       console.log("login user", response.data);
       onLoginSuccess(response.data);
       setAuthUserId(response.data.id); // Устанавливаем authUserId в контексте

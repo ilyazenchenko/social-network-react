@@ -22,7 +22,7 @@ function SearchPage() {
 
     const fetchSearchResults = async (query) => {
         try {
-            const response = await axios.get(`http://social-security:8080/search?query=${query}`);
+            const response = await axios.get(`http://localhost:8080/search?query=${query}`);
             setSearchResults(response.data);
             console.log(response.data)
         } catch (error) {

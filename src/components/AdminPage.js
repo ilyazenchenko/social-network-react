@@ -8,7 +8,7 @@ function AdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://social-security:8080/admin')  // Подставьте ваш настоящий URL
+    axios.get('http://localhost:8080/admin')  // Подставьте ваш настоящий URL
       .then(response => {
         setData(response.data);
       })
