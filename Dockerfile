@@ -1,10 +1,7 @@
-# Dockerfile для React приложения
-FROM node:14
-WORKDIR /app
-COPY package.json ./
-COPY package-lock.json ./
+FROM node:18-alpine
+WORKDIR /react-docker-example/
+COPY public/ /react-docker-example/public
+COPY src/ /react-docker-example/src
+COPY package.json /react-docker-example/
 RUN npm install
-COPY . ./
-RUN npm run build
-FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+CMD ["npm", "start"]
